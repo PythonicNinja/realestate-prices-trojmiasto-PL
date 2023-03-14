@@ -17,7 +17,6 @@ for size, size_label in sizes:
             min_price = data['min']
             max_price = data['max']
             location = data['seo']['heading']
-            size = size_label
             print(f"{location}")
             print(f"min: {min_price}")
             print(f"max: {max_price}")
@@ -26,7 +25,8 @@ for size, size_label in sizes:
                 "location": location,
                 "min_price": min_price,
                 "max_price": max_price,
-                "size": size,
+                "size": size_label,
+                "uri": uri,
                 "prices": prices,
             })
         except Exception:
