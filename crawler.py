@@ -8,7 +8,7 @@ sizes = (
 )
 rows = []
 for size, size_label in sizes:
-    for idx in range(0, 40):
+    for idx in range(0, 300):
         uri = f"https://dom.trojmiasto.pl/ajax/barometer.json?type=1&localization=d{idx}&size={size}&first_month=2010-07-01&last_month=2023-02-01"
         try:
             req = requests.get(uri)
@@ -32,4 +32,5 @@ for size, size_label in sizes:
         except Exception:
             ...
 df = pd.DataFrame.from_records(data=rows)
-df.to_csv('cached_df.csv')
+df = df.sort_values('max_price', ascending=False)
+df.to_csv('/Users/pythonicninja/PycharmProjects/realestate-prices-trojmiasto-PL/cached_df.csv')
