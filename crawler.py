@@ -1,4 +1,5 @@
 import requests
+import time
 import pandas as pd
 sizes = (
     (1, "0-35"),
@@ -21,6 +22,8 @@ for size, size_label in sizes:
             print(f"min: {min_price}")
             print(f"max: {max_price}")
             print(f"prices: {prices}")
+            if not min_price and not max_price:
+                continue
             rows.append({
                 "location": location,
                 "min_price": min_price,
@@ -29,8 +32,10 @@ for size, size_label in sizes:
                 "uri": uri,
                 "prices": prices,
             })
+            time.sleep(2)
         except Exception:
             ...
 df = pd.DataFrame.from_records(data=rows)
+df.location = df.location.str.replace('Barometr Cen Nieruchomości ', '')
 df = df.sort_values('max_price', ascending=False)
 df.to_csv('/Users/pythonicninja/PycharmProjects/realestate-prices-trojmiasto-PL/cached_df.csv')
