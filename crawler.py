@@ -10,7 +10,7 @@ sizes = (
 rows = []
 for size, size_label in sizes:
     for idx in range(0, 300):
-        uri = f"https://dom.trojmiasto.pl/ajax/barometer.json?type=1&localization=d{idx}&size={size}&first_month=2010-07-01&last_month=2023-02-01"
+        uri = f"https://dom.trojmiasto.pl/ajax/barometer.json?type=1&localization=d{idx}&size={size}&first_month=2010-07-01&last_month=2024-02-01"
         try:
             req = requests.get(uri)
             data = req.json()
@@ -32,7 +32,7 @@ for size, size_label in sizes:
                 "uri": uri,
                 "prices": prices,
             })
-            time.sleep(2)
+            time.sleep(1)
         except Exception:
             ...
 df = pd.DataFrame.from_records(data=rows)
