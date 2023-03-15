@@ -37,5 +37,6 @@ for size, size_label in sizes:
             ...
 df = pd.DataFrame.from_records(data=rows)
 df.location = df.location.str.replace('Barometr Cen Nieruchomości ', '')
-df = df.sort_values('max_price', ascending=False)
+df['gain'] = df.max_price / df.min_price
+df = df.sort_values('gain', ascending=False)
 df.to_csv('/Users/pythonicninja/PycharmProjects/realestate-prices-trojmiasto-PL/cached_df.csv')
