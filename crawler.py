@@ -9,7 +9,7 @@ sizes = (
 )
 rows = []
 for size, size_label in sizes:
-    for idx in range(0, 300):
+    for idx in range(0, 300):  # this tries to guess all locations
         uri = f"https://dom.trojmiasto.pl/ajax/barometer.json?type=1&localization=d{idx}&size={size}&first_month=2010-07-01&last_month=2024-02-01"
         try:
             req = requests.get(uri)
