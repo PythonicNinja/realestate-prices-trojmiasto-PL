@@ -32,7 +32,7 @@ for size, size_label in sizes:
                 "uri": uri,
                 "prices": prices,
             })
-            time.sleep(1)
+            time.sleep(1)  # be nice to the server, so they don't block us
         except Exception:
             ...
 df = pd.DataFrame.from_records(data=rows)
